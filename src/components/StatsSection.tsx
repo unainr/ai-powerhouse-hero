@@ -1,3 +1,5 @@
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+
 const stats = [
   { value: "98%", label: "Candidate Match Rate" },
   { value: "10x", label: "Faster Hiring" },
@@ -6,9 +8,10 @@ const stats = [
 ];
 
 export function StatsSection() {
+  const { ref, isVisible } = useScrollReveal();
+
   return (
-    <section className="py-20 md:py-28 px-6 md:px-8 relative">
-      {/* Subtle gradient bg */}
+    <section className="py-20 md:py-28 px-6 md:px-8 relative" ref={ref}>
       <div
         className="absolute inset-0 pointer-events-none opacity-30"
         style={{
@@ -18,8 +21,11 @@ export function StatsSection() {
 
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-          {stats.map((stat) => (
-            <div key={stat.label} className="text-center">
+          {stats.map((stat, i) => (
+            <div
+              key={stat.label}
+              className={`text-center ${isVisible ? `counter-up stagger-${i + 1}` : "reveal-hidden"}`}
+            >
               <div
                 className="text-4xl md:text-6xl font-display font-bold bg-clip-text text-transparent mb-2"
                 style={{

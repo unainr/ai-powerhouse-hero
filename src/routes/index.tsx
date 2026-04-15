@@ -6,6 +6,10 @@ import { BackgroundVideo } from "@/components/BackgroundVideo";
 import { FeaturesSection } from "@/components/FeaturesSection";
 import { StatsSection } from "@/components/StatsSection";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { IntegrationsSection } from "@/components/IntegrationsSection";
+import { PricingSection } from "@/components/PricingSection";
+import { FAQSection } from "@/components/FAQSection";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
 
@@ -36,6 +40,10 @@ function Index() {
       <FeaturesSection />
       <StatsSection />
       <HowItWorksSection />
+      <TestimonialsSection />
+      <IntegrationsSection />
+      <PricingSection />
+      <FAQSection />
       <CTASection />
       <Footer />
     </div>

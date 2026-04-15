@@ -1,4 +1,5 @@
 import { Brain, Zap, Target, Shield, BarChart3, Users } from "lucide-react";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const features = [
   {
@@ -34,10 +35,12 @@ const features = [
 ];
 
 export function FeaturesSection() {
+  const { ref, isVisible } = useScrollReveal();
+
   return (
-    <section className="py-24 md:py-32 px-6 md:px-8">
+    <section className="py-24 md:py-32 px-6 md:px-8" ref={ref}>
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 md:mb-20">
+        <div className={`text-center mb-16 md:mb-20 ${isVisible ? "reveal-up" : "reveal-hidden"}`}>
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary/80 mb-4 block">
             Features
           </span>
@@ -49,12 +52,14 @@ export function FeaturesSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature) => (
+          {features.map((feature, i) => (
             <div
               key={feature.title}
-              className="liquid-glass rounded-2xl p-8 group hover:scale-[1.02] transition-transform duration-300"
+              className={`liquid-glass rounded-2xl p-8 group hover:scale-[1.02] transition-transform duration-300 ${
+                isVisible ? `reveal-scale stagger-${i + 1}` : "reveal-hidden"
+              }`}
             >
-              <div className="w-12 h-12 rounded-xl liquid-glass flex items-center justify-center mb-6">
+              <div className="w-12 h-12 rounded-xl liquid-glass flex items-center justify-center mb-6 group-hover:animate-float">
                 <feature.icon className="w-6 h-6 text-primary" />
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-3 font-display">

@@ -1,3 +1,5 @@
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+
 const steps = [
   {
     number: "01",
@@ -22,10 +24,12 @@ const steps = [
 ];
 
 export function HowItWorksSection() {
+  const { ref, isVisible } = useScrollReveal();
+
   return (
-    <section className="py-24 md:py-32 px-6 md:px-8">
+    <section className="py-24 md:py-32 px-6 md:px-8" ref={ref}>
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16 md:mb-20">
+        <div className={`text-center mb-16 md:mb-20 ${isVisible ? "reveal-up" : "reveal-hidden"}`}>
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary/80 mb-4 block">
             How It Works
           </span>
@@ -37,10 +41,12 @@ export function HowItWorksSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {steps.map((step) => (
+          {steps.map((step, i) => (
             <div
               key={step.number}
-              className="liquid-glass rounded-2xl p-8 md:p-10 flex gap-6 group hover:scale-[1.01] transition-transform duration-300"
+              className={`liquid-glass rounded-2xl p-8 md:p-10 flex gap-6 group hover:scale-[1.01] transition-transform duration-300 ${
+                isVisible ? `${i % 2 === 0 ? "reveal-left" : "reveal-right"} stagger-${i + 1}` : "reveal-hidden"
+              }`}
             >
               <span
                 className="text-5xl md:text-6xl font-display font-bold bg-clip-text text-transparent shrink-0 leading-none"

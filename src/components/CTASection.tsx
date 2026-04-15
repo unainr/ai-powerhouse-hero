@@ -1,9 +1,11 @@
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { Button } from "@/components/ui/button";
 
 export function CTASection() {
+  const { ref, isVisible } = useScrollReveal();
+
   return (
-    <section className="py-24 md:py-32 px-6 md:px-8 relative">
-      {/* Background glow */}
+    <section className="py-24 md:py-32 px-6 md:px-8 relative" ref={ref}>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -11,7 +13,7 @@ export function CTASection() {
         }}
       />
 
-      <div className="max-w-3xl mx-auto text-center relative z-10">
+      <div className={`max-w-3xl mx-auto text-center relative z-10 ${isVisible ? "reveal-up" : "reveal-hidden"}`}>
         <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-semibold text-foreground tracking-tight mb-6">
           Ready to transform
           <br />
