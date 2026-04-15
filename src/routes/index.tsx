@@ -1,26 +1,29 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/Navbar";
+import { HeroContent } from "@/components/HeroContent";
+import { LogoMarquee } from "@/components/LogoMarquee";
+import { BackgroundVideo } from "@/components/BackgroundVideo";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "Power AI — AI for Talent Acquisition" },
+      { name: "description", content: "The most powerful AI ever deployed in talent acquisition." },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="/placeholder.svg"
-        alt="Your app will live here!"
-      />
+    <div className="relative min-h-screen overflow-hidden">
+      <BackgroundVideo />
+
+      <div className="relative z-10 min-h-screen flex flex-col" style={{ overflow: "visible" }}>
+        <Navbar />
+        <HeroContent />
+        <LogoMarquee />
+      </div>
     </div>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
